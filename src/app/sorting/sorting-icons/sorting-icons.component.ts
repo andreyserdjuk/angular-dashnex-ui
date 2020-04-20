@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FilterStateEnum } from './FilterStateEnum';
 import { SortDirectionEnum } from './SortDirectionEnum';
 import { Observable, Subject } from 'rxjs';
@@ -20,6 +20,7 @@ export class SortingIconsComponent implements OnInit {
 
   public upFilterClass = ['sort-up', FilterStateEnum.DISABLED];
   public downFilterClass = ['sort-up', FilterStateEnum.DISABLED];
+  public sortTextClass = ['sort-text'];
 
   private upFilterState = FilterStateEnum.DISABLED;
   private downFilterState = FilterStateEnum.DISABLED;
@@ -35,23 +36,20 @@ export class SortingIconsComponent implements OnInit {
         this.setArrowsClass(FilterStateEnum.DISABLED, FilterStateEnum.DISABLED);
       } else {
         if (direction === SortDirectionEnum.UP) {
-          this.upFilterState = FilterStateEnum.ENABLED;
-          this.downFilterState = FilterStateEnum.DISABLED;
+          this.setArrowsClass(FilterStateEnum.ENABLED, FilterStateEnum.INVISIBLE);
         } else {
-          this.upFilterState = FilterStateEnum.DISABLED;
-          this.downFilterState = FilterStateEnum.ENABLED;
+          this.setArrowsClass(FilterStateEnum.INVISIBLE, FilterStateEnum.ENABLED);
         }
-        this.upFilterClass = ['sort-up', this.upFilterState];
-        this.downFilterClass = ['sort-down', this.downFilterState];
       }
     });
   }
 
   switchSort() {
-    if (FilterStateEnum.DISABLED === this.upFilterState && 
-        FilterStateEnum.DISABLED === this.downFilterState
+    if (FilterStateEnum.DISABLED === this.upFilterState && FilterStateEnum.DISABLED === this.downFilterState ||
+        FilterStateEnum.INVISIBLE === this.upFilterState && FilterStateEnum.ENABLED === this.downFilterState
     ) {
       this.setArrowsClass(FilterStateEnum.ENABLED, FilterStateEnum.INVISIBLE);
+      this.outputChangeSortDirection.next({name: this.name, direction: SortDirectionEnum.UP});
       return;
     }
 
@@ -59,13 +57,7 @@ export class SortingIconsComponent implements OnInit {
         FilterStateEnum.INVISIBLE === this.downFilterState
     ) {
       this.setArrowsClass(FilterStateEnum.INVISIBLE, FilterStateEnum.ENABLED);
-      return;
-    }
-
-    if (FilterStateEnum.INVISIBLE === this.upFilterState && 
-        FilterStateEnum.ENABLED === this.downFilterState
-    ) {
-      this.setArrowsClass(FilterStateEnum.ENABLED, FilterStateEnum.INVISIBLE);
+      this.outputChangeSortDirection.next({name: this.name, direction: SortDirectionEnum.DOWN});
       return;
     }
   }
@@ -73,11 +65,12 @@ export class SortingIconsComponent implements OnInit {
   private setArrowsClass(up, down) {
     this.upFilterState = up;
     this.downFilterState = down;
+    this.sortTextClass = ['sort-text'];
 
     if (FilterStateEnum.ENABLED === up) {
-      this.outputChangeSortDirection.next({name: this.name, direction: SortDirectionEnum.UP});
+      this.sortTextClass = ['sort-text', SortDirectionEnum.UP];
     } else if (FilterStateEnum.ENABLED === down) {
-      this.outputChangeSortDirection.next({name: this.name, direction: SortDirectionEnum.DOWN});
+      this.sortTextClass = ['sort-text', SortDirectionEnum.DOWN];
     }
     
     this.upFilterClass = ['sort-up', up];

@@ -11,7 +11,7 @@ export class SortingDemoComponent implements OnInit {
 
   changeSortDirection = new Subject<{name: string, direction: SortDirectionEnum}>();
   resetSortDirection = new Subject<{name: string, direction: SortDirectionEnum}>();
-  sortables = ['title', 'subject'];
+  sortables = ['TITLE', 'subject'];
   
   log = '';
 

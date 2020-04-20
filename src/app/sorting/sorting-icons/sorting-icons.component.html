@@ -2,7 +2,7 @@
   (click)="switchSort()"
   class="flex-wrapper pointer"
 >
-  <div class="sort-text">
+  <div [ngClass]="sortTextClass">
     <ng-content></ng-content>
   </div>
   <div
@@ -12,7 +12,7 @@
       <div [ngClass]="upFilterClass">
         <i class="fa fa-chevron-up"></i>
       </div>
-      <div [ngClass]="downFilterClass">
+      <div [ngClass]="downFilterClass.concat('sort-down-persistent')">
         <i class="fa fa-chevron-down"></i>
       </div>
     </div>

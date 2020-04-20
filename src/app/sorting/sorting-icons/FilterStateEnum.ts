@@ -1,5 +1,5 @@
 export enum FilterStateEnum {
-  ENABLED= 'enabled',
-  DISABLED= 'disabled',
+  ENABLED= 'sort-enabled',
+  DISABLED= 'sort-disabled',
   INVISIBLE= 'invisible'
 }
