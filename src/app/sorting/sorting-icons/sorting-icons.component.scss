@@ -1,0 +1,59 @@
+.pointer {
+  cursor: pointer;
+}
+
+.sorting {
+  font-family: FontAwesome;
+}
+
+.sort-inline {
+  display: inline-block;
+}
+
+.sort-text {
+  height: 100%;
+  display: inline-block;
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sort-block {
+  display: flex;
+  flex-direction: column;
+
+  .sort-up, .sort-down {
+    &.transperent {
+      opacity: 0;
+    }
+
+    &.disabled {
+      color: #ccc;
+    }
+
+    &.enabled {
+      color: #000;
+    }
+  }
+
+  .sort-up {
+    overflow: hidden;
+    display: flexbox;
+    height: 0.9em;
+
+    i {
+      vertical-align: top;
+    }
+  }
+
+  .sort-down {
+    height: 0.9em;
+
+    i {
+      vertical-align: top;
+    }
+  }
+}

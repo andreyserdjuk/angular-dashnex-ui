@@ -1,0 +1,25 @@
+<app-steps
+  [currentStep]="step"
+  [steps]="steps"
+></app-steps>
+
+<app-property-mapping
+  [tableData]=csvData
+  [mapping]=mapping
+  (propertyToColumnMapping)="logMapped($event)"
+>
+</app-property-mapping>
+
+<p>
+  <input
+  type="file"
+  (change)="acceptFile($event.target.files[0])">
+</p>
+
+<button (click)="step=1">1</button>
+<button (click)="step=2">2</button>
+<button (click)="step=3">3</button>
+
+<hr>
+
+<dn-sorting-demo></dn-sorting-demo>

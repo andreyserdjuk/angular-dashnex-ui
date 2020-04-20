@@ -1,0 +1,38 @@
+<span class="step-bar">
+  <ng-container
+    *ngFor="let step of steps; index as i; first as isFirst;"
+  >
+    <span class="step-wrapper">
+      <span
+        [ngClass]="{'step-title': true, 'active': currentStep === i+1}"
+      >
+        {{step}}
+      </span>
+      <span class="step-circle-wrapper">
+        <span
+          [ngClass]="{
+            'step-circle': true,
+            'active': currentStep === i+1,
+            'previous': currentStep >= i+1
+          }"
+        >{{currentStep === i+1? i+1 : ''}}</span>
+      </span>
+      <div
+        *ngIf="i+1 < steps.length"
+        [ngClass]="{'step-line-left': true, 'active': currentStep > i+1}"
+      ></div>
+      <div
+        *ngIf="i > 0"
+        [ngClass]="{'step-line-right': true, 'active': currentStep > i}"
+      ></div>
+    </span>
+
+    <span
+      *ngIf="i < steps.length - 1"
+      class="line-wrapper"
+    >
+      <div [ngClass]="{'step-line-full': true, 'active': currentStep > i+1}"></div>
+    </span>
+
+  </ng-container>
+</span>

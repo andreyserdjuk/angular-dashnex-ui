@@ -1,0 +1,20 @@
+th {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.exchange {
+  color: #6D5CAE;
+  text-align: center;
+}
+
+.file-column {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+}

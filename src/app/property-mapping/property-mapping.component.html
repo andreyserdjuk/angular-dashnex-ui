@@ -1,0 +1,34 @@
+<table class="table table-striped table-condensed" id="">
+    <thead>
+    <tr role="row">
+        <th>FILE COLUMN</th>
+        <th style="text-align:center;">APPLICATION FIELDS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let columnName of tableData[0]; let columnIndex = index;">
+        <td class="v-align-middle file-column">
+          {{ columnName }}
+        </td>
+        <td class="exchange">
+          <span>
+            <i class="fa fa-exchange"></i>
+          </span>
+        </td>
+        <td class="v-align-middle">
+            <select
+              (change)="setMapping(columnIndex, $event.target.value)"
+              class="form-control"
+            >
+                <option value="ignored"></option>
+                <option
+                    *ngFor="let map of mapping"
+                    [value]="map.key"
+                >
+                    {{ map.title }}
+                </option>
+            </select>
+        </td>
+    </tr>
+    </tbody>
+</table>

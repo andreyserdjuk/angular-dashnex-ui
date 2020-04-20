@@ -1,0 +1,20 @@
+<div
+  (click)="switchSort()"
+  class="flex-wrapper pointer"
+>
+  <div class="sort-text">
+    <ng-content></ng-content>
+  </div>
+  <div
+    class="sort-inline"
+  >
+    <div class="sort-block" [ngStyle]="sortBlockStyle">
+      <div [ngClass]="upFilterClass">
+        <i class="fa fa-chevron-up"></i>
+      </div>
+      <div [ngClass]="downFilterClass">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+    </div>
+  </div>
+</div>
